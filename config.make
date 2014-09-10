@@ -79,6 +79,9 @@
 # TODO: should this be a default setting?
 # PROJECT_LDFLAGS=-Wl,-rpath=./libs
 
+# WiringPi for cycleChaser project:
+PROJECT_LDFLAGS += -lwiringPi
+
 ################################################################################
 # PROJECT DEFINES
 #   Create a space-delimited list of DEFINES. The list will be converted into 
