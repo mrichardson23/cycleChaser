@@ -1,2 +1,4 @@
-bin/
+bin/cycleChaser
+bin/libs/
+bin/readMe.txt
 obj/
