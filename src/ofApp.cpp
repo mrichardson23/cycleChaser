@@ -41,6 +41,8 @@ void ofApp::setup(){
 	pinMode(WHEEL_SENSOR_PIN, INPUT);
 	wiringPiISR (WHEEL_SENSOR_PIN, INT_EDGE_FALLING, &incrementFrame);
 
+	// Hide mouse cursor
+	ofHideCursor();
 }
 
 //--------------------------------------------------------------
