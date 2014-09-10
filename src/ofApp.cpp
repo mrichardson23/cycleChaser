@@ -5,14 +5,25 @@
 
 ofImage frame[TOTAL_FRAMES];
 int currentFrame = 0;
-
+int framePositionX;
+int framePositionY;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	for (int i = 0; i++; i < TOTAL_FRAMES) {
+	for (int i = 0; i < TOTAL_FRAMES; i++) {
 		string filename = "Frame" + ofToString(i) + ".png";
-		frame[i].loadImage(filename);
+		if (frame[i].loadImage(filename)) {
+			ofLog(OF_LOG_NOTICE, "Loaded frame file: " + filename);
+		}
+		else {
+			ofLog(OF_LOG_ERROR, "Unable to load frame file: " + filename);
+		}
 	}
+	int frameWidth = frame[0].getWidth();
+	int frameHeight = frame[0].getHeight();
+
+	framePositionX = (ofGetWidth()/2) - (frameWidth/2);
+	framePositionY = (ofGetHeight()/2) - (frameHeight/2);
 
 	wiringPiSetup();
 	pinMode(WHEEL_SENSOR_PIN, INPUT);
@@ -27,10 +38,8 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
-	if (digitalRead(WHEEL_SENSOR_PIN) == HIGH) {
-		frame[currentFrame].draw(0,0);
-	}
+	ofBackground(0);
+	frame[currentFrame].draw(framePositionX,framePositionY);
 }
 
 //--------------------------------------------------------------
