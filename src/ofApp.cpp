@@ -8,6 +8,10 @@
 // Must match the number of png files in the data folder:
 #define TOTAL_FRAMES 15
 
+// Set the rotation of the image when it's loaded in multiples of 90 degrees
+// Setting this to 2 will flip the image upside down.
+#define ROTATION 2
+
 ofImage frame[TOTAL_FRAMES];
 int currentFrame = 0;
 int framePositionX;
@@ -20,6 +24,7 @@ void ofApp::setup(){
 		string filename = "Frame" + ofToString(i) + ".png";
 		if (frame[i].loadImage(filename)) {
 			ofLog(OF_LOG_NOTICE, "Loaded frame file: " + filename);
+			frame[i].rotate90(ROTATION);
 		}
 		else {
 			ofLog(OF_LOG_ERROR, "Unable to load frame file: " + filename);
